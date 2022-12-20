@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "windows", "linux-musl", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -10,7 +11,7 @@ datasource db {
 model PropertyTypes {
   id String @id @default(uuid())
   type String
-  created_at DateTime
+  created_at DateTime @default(now())
 
   @@map("property_types")
 }

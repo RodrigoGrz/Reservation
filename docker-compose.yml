@@ -16,6 +16,7 @@ services:
       - pgdata:/data/postgres
 
   app:
+    env_file: ./.env
     build: .
     container_name: reservation
     restart: always
