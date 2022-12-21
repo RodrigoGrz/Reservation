@@ -12,5 +12,17 @@ export class PropertyTypesRepository implements IPropertyTypesRepository {
 
         return propertyType;
     }
+
+    async listByType(type: string): Promise<PropertyType | null> {
+        return await prisma.propertyTypes.findFirst({
+            where: {
+                type
+            }
+        });
+    }
+
+    async listAll(): Promise<PropertyType[]> {
+        return await prisma.propertyTypes.findMany();
+    }
     
 }
