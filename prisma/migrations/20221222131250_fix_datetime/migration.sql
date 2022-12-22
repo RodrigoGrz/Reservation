@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "customers" ALTER COLUMN "created_at" SET DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "hostings" ALTER COLUMN "created_at" SET DEFAULT CURRENT_TIMESTAMP;
