@@ -20,7 +20,7 @@ export class CreateCustomerUseCase {
         const customerAlreadyExists = await this.customersRepository.listByEmail(email);
 
         if(customerAlreadyExists) {
-            throw new Error("This customer already exists");
+            throw new Error("Esse cliente já existe");
         }
 
         const customer = await this.customersRepository.create({

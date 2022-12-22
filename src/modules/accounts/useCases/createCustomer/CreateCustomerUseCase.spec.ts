@@ -43,6 +43,6 @@ describe("Create Customer", () => {
             name: customer.name,
             email: customer.email,
             password: customer.password
-        })).rejects.toThrow(new Error("This customer already exists"));
+        })).rejects.toThrow(new Error("Esse cliente já existe"));
     });
 });
