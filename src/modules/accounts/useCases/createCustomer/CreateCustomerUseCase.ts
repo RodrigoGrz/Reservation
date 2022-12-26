@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { hash } from "bcryptjs";
 
 import { Customer } from "../../entities/Customer";
 import { ICustomersRepository } from "../../repositories/ICustomersRepository";
@@ -23,10 +24,12 @@ export class CreateCustomerUseCase {
             throw new Error("Esse cliente já existe");
         }
 
+        const passwordHash = await hash(password, 10);
+
         const customer = await this.customersRepository.create({
             name,
             email,
-            password
+            password: passwordHash
         });
 
         return customer;

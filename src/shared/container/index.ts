@@ -4,7 +4,10 @@ import { PropertyTypesRepository } from "../../modules/accommodations/repositori
 import { IPropertyTypesRepository } from "../../modules/accommodations/repositories/IPropertyTypesRepository";
 
 import { ICustomersRepository } from "../../modules/accounts/repositories/ICustomersRepository";
+import { IHostsRepository } from "../../modules/accounts/repositories/IHostsRepository";
+
 import { CustomersRepository } from "../../modules/accounts/repositories/implementations/CustomersRepository";
+import { HostsRepository } from "../../modules/accounts/repositories/implementations/HostsRepository";
 
 container.registerSingleton<IPropertyTypesRepository>(
     "PropertyTypesRepository",
@@ -14,4 +17,9 @@ container.registerSingleton<IPropertyTypesRepository>(
 container.registerSingleton<ICustomersRepository>(
     "CustomersRepository",
     CustomersRepository
+);
+
+container.registerSingleton<IHostsRepository>(
+    "HostsRepository",
+    HostsRepository
 );
