@@ -13,6 +13,8 @@ model PropertyTypes {
   type String
   created_at DateTime @default(now())
 
+  property_type Accommodation[]
+
   @@map("property_types")
 }
 
@@ -33,5 +35,22 @@ model Hosting {
   password String
   created_at DateTime @default(now())
 
+  host Accommodation[]
+
   @@map("hostings")
+}
+
+model Accommodation {
+  id String @id @default(uuid())
+  description String
+  address String
+  property_type String @unique
+  amount_per_night Float
+  host String
+  created_at DateTime @default(now())
+
+  propertyTypeId PropertyTypes @relation(fields: [property_type], references: [id])
+  hostId Hosting @relation(fields: [host], references: [id])
+
+  @@map("accommodations")
 }

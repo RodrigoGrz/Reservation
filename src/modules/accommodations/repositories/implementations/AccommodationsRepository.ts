@@ -1,0 +1,21 @@
+import { prisma } from "../../../../shared/prisma";
+
+import { ICreateAccommodationDTO } from "../../dtos/ICreateAccommodationDTO";
+import { Accommodation } from "../../entities/Accommodation";
+import { IAccommodationsRepository } from "../IAccommodationsRepository";
+
+export class AccommodationsRepository implements IAccommodationsRepository {
+    async create({ description, address, property_type, amount_per_night, host }: ICreateAccommodationDTO): Promise<Accommodation> {
+        const accommodation = await prisma.accommodation.create({
+            data: {
+                description,
+                address,
+                property_type,
+                amount_per_night,
+                host
+            }
+        });
+
+        return accommodation;
+    }
+}

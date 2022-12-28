@@ -1,5 +1,8 @@
 import { container } from "tsyringe";
 
+import { IAccommodationsRepository } from "../../modules/accommodations/repositories/IAccommodationsRepository";
+import { AccommodationsRepository } from "../../modules/accommodations/repositories/implementations/AccommodationsRepository";
+
 import { PropertyTypesRepository } from "../../modules/accommodations/repositories/implementations/PropertyTypesRepository";
 import { IPropertyTypesRepository } from "../../modules/accommodations/repositories/IPropertyTypesRepository";
 
@@ -22,4 +25,9 @@ container.registerSingleton<ICustomersRepository>(
 container.registerSingleton<IHostsRepository>(
     "HostsRepository",
     HostsRepository
+);
+
+container.registerSingleton<IAccommodationsRepository>(
+    "AccommodationsRepository",
+    AccommodationsRepository
 );
