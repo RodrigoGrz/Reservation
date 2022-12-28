@@ -18,4 +18,29 @@ export class AccommodationsRepository implements IAccommodationsRepository {
 
         return accommodation;
     }
+
+    async listAll(): Promise<Accommodation[]> {
+        const accommodations = await prisma.accommodation.findMany({
+            select: {
+                description: true,
+                address: true,
+                propertyTypeId: {
+                    select: {
+                        type: true
+                    }
+                },
+                amount_per_night: true,
+                hostId: {
+                    select: {
+                        name: true,
+                        email: true,
+                        password: false
+                    }
+                },
+                created_at: true
+            }
+        });
+
+        return accommodations;
+    }
 }

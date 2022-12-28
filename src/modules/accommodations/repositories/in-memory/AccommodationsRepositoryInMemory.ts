@@ -21,4 +21,9 @@ export class AccommodationsRepositoryInMemory implements IAccommodationsReposito
         return accommodation;
     }
     
+    async listAll(): Promise<Accommodation[]> {
+        const accommodations = this.accommodations;
+
+        return accommodations;
+    }
 }
