@@ -12,6 +12,9 @@ import { IHostsRepository } from "../../modules/accounts/repositories/IHostsRepo
 import { CustomersRepository } from "../../modules/accounts/repositories/implementations/CustomersRepository";
 import { HostsRepository } from "../../modules/accounts/repositories/implementations/HostsRepository";
 
+import { ReservationsRepository } from "../../modules/reservations/repositories/implementations/ReservationsRepository";
+import { IReservationRepository } from "../../modules/reservations/repositories/IReservationsRepository";
+
 container.registerSingleton<IPropertyTypesRepository>(
     "PropertyTypesRepository",
     PropertyTypesRepository
@@ -30,4 +33,9 @@ container.registerSingleton<IHostsRepository>(
 container.registerSingleton<IAccommodationsRepository>(
     "AccommodationsRepository",
     AccommodationsRepository
+);
+
+container.registerSingleton<IReservationRepository>(
+    "ReservationsRepository",
+    ReservationsRepository
 );

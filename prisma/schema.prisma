@@ -25,6 +25,8 @@ model Customer {
   password String
   created_at DateTime @default(now())
 
+  customer Reservation[]
+
   @@map("customers")
 }
 
@@ -51,6 +53,21 @@ model Accommodation {
 
   propertyTypeId PropertyTypes @relation(fields: [property_type], references: [id])
   hostId Hosting @relation(fields: [host], references: [id])
+  accommodation Reservation[]
 
   @@map("accommodations")
+}
+
+model Reservation {
+  id String @id @default(uuid())
+  accommodation String
+  customer String
+  check_in DateTime
+  check_out DateTime
+  created_at DateTime @default(now())
+
+  accommodationId Accommodation @relation(fields: [accommodation], references: [id])
+  customerId Customer @relation(fields: [customer], references: [id])
+
+  @@map("reservations")
 }
