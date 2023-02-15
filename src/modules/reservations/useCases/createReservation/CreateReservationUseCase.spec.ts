@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { AccommodationsRepositoryInMemory } from "../../../accommodations/repositories/in-memory/AccommodationsRepositoryInMemory";
 import { PropertyTypesRepositoryInMemory } from "../../../accommodations/repositories/in-memory/PropertyTypesRepositoryInMemory";
 import { CreateAccommodationUseCase } from "../../../accommodations/useCases/createAccommodation/CreateAccommodationUseCase";
@@ -149,6 +150,6 @@ describe("Create reservation", () => {
             customer: reservation.customer,
             check_in: reservation.check_in,
             check_out: reservation.check_out
-        })).rejects.toThrow(new Error("A data do check in deve ser antes da data do check out"));
+        })).rejects.toEqual(new AppError("A data do check in deve ser antes da data do check out", 409));
     });
 });

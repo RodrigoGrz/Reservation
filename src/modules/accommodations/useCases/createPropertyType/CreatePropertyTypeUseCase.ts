@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../shared/errors/AppError";
 import { PropertyType } from "../../entities/PropertyType";
 import { IPropertyTypesRepository } from "../../repositories/IPropertyTypesRepository";
 
@@ -14,7 +15,7 @@ export class CreatePropertyTypesUseCase {
         const propertyTypeAlreadyExists = await this.propertyTypesRepository.listByType(type);
 
         if(propertyTypeAlreadyExists) {
-            throw new Error("Esse tipo de propriedade já existe!");
+            throw new AppError("Esse tipo de propriedade já existe!", 409);
         }
 
         const propertyType = await this.propertyTypesRepository.create(type);

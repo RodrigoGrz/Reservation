@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { PropertyTypesRepositoryInMemory } from "../../repositories/in-memory/PropertyTypesRepositoryInMemory";
 import { CreatePropertyTypesUseCase } from "./CreatePropertyTypeUseCase";
 
@@ -28,6 +29,6 @@ describe("Create Property Type", () => {
         await createPropertyTypeUseCase.execute(propertyType.type);
 
         await expect(createPropertyTypeUseCase.execute(propertyType.type))
-            .rejects.toThrow(new Error("Esse tipo de propriedade já existe!"));
+            .rejects.toEqual(new AppError("Esse tipo de propriedade já existe!", 409));
     });
 });

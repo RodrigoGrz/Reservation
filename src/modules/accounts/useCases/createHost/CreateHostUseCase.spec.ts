@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { HostsRepositoryInMemory } from "../../repositories/in-memory/HostsRepositoryInMemory";
 import { CreateHostUseCase } from "./CreateHostUseCase";
 
@@ -43,6 +44,6 @@ describe("Create Host", () => {
             name: host.name,
             email: host.email,
             password: host.password
-        })).rejects.toThrow("O anfitrião já está cadastrado");
+        })).rejects.toEqual(new AppError("O anfitrião já está cadastrado", 409))
     });
 });

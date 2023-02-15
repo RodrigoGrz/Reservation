@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { CustomersRepositoryInMemory } from "../../repositories/in-memory/CustomersRepositoryInMemory";
 import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
 
@@ -43,6 +44,6 @@ describe("Create Customer", () => {
             name: customer.name,
             email: customer.email,
             password: customer.password
-        })).rejects.toThrow(new Error("Esse cliente já existe"));
+        })).rejects.toEqual(new AppError("Esse cliente já existe", 409));
     });
 });

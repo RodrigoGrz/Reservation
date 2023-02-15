@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateHostDTO } from "../../dtos/ICreateHostDTO";
 import { Host } from "../../entities/Host";
 import { IHostsRepository } from "../../repositories/IHostsRepository";
@@ -16,7 +17,7 @@ export class CreateHostUseCase {
         const hostAlreadyExists = await this.hostsRepository.listByEmail(email);
 
         if(hostAlreadyExists) {
-            throw new Error("O anfitrião já está cadastrado");
+            throw new AppError("O anfitrião já está cadastrado", 409);
         }
         
         const passwordHash = await hash(password, 10);

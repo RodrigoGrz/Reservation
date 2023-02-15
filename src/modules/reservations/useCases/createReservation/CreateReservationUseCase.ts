@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../shared/errors/AppError";
 
 import { Reservation } from "../../entities/Reservation";
 import { IReservationRepository } from "../../repositories/IReservationsRepository";
@@ -19,7 +20,7 @@ export class CreateReservationUseCase {
 
     async execute({ accommodation, customer, check_in, check_out }: IRequest): Promise<Reservation> {        
         if(Date.parse(check_in) > Date.parse(check_out)) {
-            throw new Error("A data do check in deve ser antes da data do check out");
+            throw new AppError("A data do check in deve ser antes da data do check out", 409);
         }
 
         const reservation = await this.reservationsRepository.create({

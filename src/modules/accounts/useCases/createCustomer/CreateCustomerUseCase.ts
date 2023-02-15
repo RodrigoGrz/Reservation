@@ -3,6 +3,7 @@ import { hash } from "bcryptjs";
 
 import { Customer } from "../../entities/Customer";
 import { ICustomersRepository } from "../../repositories/ICustomersRepository";
+import { AppError } from "../../../../shared/errors/AppError";
 
 interface IRequest {
     name: string;
@@ -21,7 +22,7 @@ export class CreateCustomerUseCase {
         const customerAlreadyExists = await this.customersRepository.listByEmail(email);
 
         if(customerAlreadyExists) {
-            throw new Error("Esse cliente já existe");
+            throw new AppError("Esse cliente já existe", 409);
         }
 
         const passwordHash = await hash(password, 10);
